@@ -29,6 +29,7 @@ spec:
 ---
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
+
 metadata:
   name: flatris-autoscaling
 spec:
@@ -43,3 +44,22 @@ spec:
     resource:
       name: cpu
       targetAverageUtilization: 80
+
+---
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: flatris-service
+  labels:
+     env  : test
+     owner: DenisAbarinov
+spec:
+  selector:
+    project: skillbox-devops
+  ports:
+    - name      : app-listener
+      protocol  : TCP
+      port      : 3000  # Port on Load Balancer
+      targetPort: 3000  # Port on Pod
+  type: LoadBalancer
