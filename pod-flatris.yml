@@ -1,0 +1,17 @@
+## Manifest File to create Pod
+
+apiVersion : v1
+kind: Pod
+
+metadata:
+  name: flatris-pod
+  labels:
+    app  : flatris-apps
+    owner: KirillDemtchenko
+
+spec:
+  containers:
+    - name : flatris
+      image: registry.gitlab.com/denav/skillbox
+      ports:
+        - containerPort: 3000
