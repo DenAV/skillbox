@@ -1,30 +1,30 @@
-
 #
 ### Manifest create Deployment with AutoScaling
 #
 
-apiWersion : apps/v1
+apiVersion : apps/v1
 kind: Deployment
+
 metadata:
   name: flatris-deployment-autoscaling
   labels:
     app: flatris-apps
-    owner: Kirill Demtchenko
+    owner: KirillDemtchenko
 
 spec:
   selector:
     matchLabels:
       project: skillbox-devops
-    template:
-      metadata:
-        labels:
+  template:
+    metadata:
+      labels:
           project: skillbox-devops
-      spec:
-        containers:
-          - name: flatris
-            image: registry.gitlab.com/denav/skillbox
-            ports:
-              - containerPort: 3000
+    spec:
+      containers:
+        - name: flatris
+          image: registry.gitlab.com/denav/skillbox
+          ports:
+            - containerPort: 3000
 
 ---
 apiVersion: autoscaling/v2beta1
